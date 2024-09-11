@@ -5,13 +5,13 @@ import { useState } from 'react'
 import { loadPasskeysFromLocalStorage } from '../lib/passkeys'
 
 type props = {
-  handleCreatePasskey: () => {}
-  handleSelectPasskey: (passkey: PasskeyArgType) => {}
+  handleCreatePasskey: () => object
+  handleSelectPasskey: (passkey: PasskeyArgType) => object
 }
 
 function LoginWithPasskey({ handleCreatePasskey, handleSelectPasskey }: props) {
   const [passkeys, setPasskeys] = useState<PasskeyArgType[]>([])
-
+  console.log(passkeys)
   return (
     <Paper sx={{ margin: '32px auto 0' }}>
       <Stack padding={4}>

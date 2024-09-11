@@ -1,18 +1,23 @@
 import { PasskeyArgType } from '@safe-global/protocol-kit'
-import { Safe4337Pack } from '@safe-global/relay-kit'
+import { PaymasterOptions, Safe4337Pack } from '@safe-global/relay-kit'
 import { encodeFunctionData } from 'viem'
 import {
   BUNDLER_URL,
   NFT_ADDRESS,
-  PAYMASTER_ADDRESS,
+  //PAYMASTER_ADDRESS,
   PAYMASTER_URL,
   RPC_URL
 } from './constants'
 
-const paymasterOptions = {
-  isSponsored: true,
-  paymasterAddress: PAYMASTER_ADDRESS,
-  paymasterUrl: PAYMASTER_URL
+// const paymasterOptions : PaymasterOptions = {
+//   isSponsored: true,
+//   paymasterAddress: PAYMASTER_ADDRESS,
+//   paymasterUrl: PAYMASTER_URL
+// }
+
+const paymasterOptions : PaymasterOptions = {
+  isSponsored : true,
+  paymasterUrl : PAYMASTER_URL
 }
 
 /**
