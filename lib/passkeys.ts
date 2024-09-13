@@ -36,6 +36,7 @@ export async function createPasskey (): Promise<PasskeyArgType> {
     throw Error('Passkey creation failed: No credential was returned.')
   }
 
+  console.log("Credentials: ", passkeyCredential)
   const passkey = await extractPasskeyData(passkeyCredential)
   console.log("Created Passkey: ", passkey)
 
