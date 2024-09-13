@@ -35,7 +35,7 @@ export const deploy = async (passkey: PasskeyArgType) => {
   // 2) Create SafeOperation
   const rawTx = {
     to: zeroAddress,
-    data: '0x0',
+    data: BigInt(0).toString(),
     value: '0'
   }
 
