@@ -1,6 +1,6 @@
 import { PasskeyArgType } from '@safe-global/protocol-kit'
 import { PaymasterOptions, Safe4337Pack } from '@safe-global/relay-kit'
-import { zeroAddress } from 'viem'
+import { formatEther, parseEther, zeroAddress } from 'viem'
 import {
   BUNDLER_URL,
   PAYMASTER_URL,
@@ -35,7 +35,7 @@ export const deploy = async (passkey: PasskeyArgType) => {
   // 2) Create SafeOperation
   const rawTx = {
     to: zeroAddress,
-    data: BigInt(0).toString(),
+    data: parseEther('0').toString(),
     value: '0'
   }
 
