@@ -1,5 +1,4 @@
 import OpenInNewIcon from '@mui/icons-material/OpenInNew'
-import PhotoIcon from '@mui/icons-material/Photo'
 import {
   Button,
   CircularProgress,
@@ -11,11 +10,9 @@ import {
 } from '@mui/material'
 import { PasskeyArgType } from '@safe-global/protocol-kit'
 import { Safe4337Pack } from '@safe-global/relay-kit'
-import Image from 'next/image'
 import { useCallback, useEffect, useState } from 'react'
 import { BUNDLER_URL, CHAIN_NAME, RPC_URL } from '../lib/constants'
-import { mintNFT } from '../lib/mintNFT'
-import SafeLogo from '../public/safeLogo.png'
+import { deploy } from '../lib/deploy'
 
 type props = {
   passkey: PasskeyArgType
@@ -52,24 +49,24 @@ function SafeAccountDetails({ passkey }: props) {
     showSafeInfo()
   }, [showSafeInfo])
 
-  async function handleMintNFT() {
+  async function handleDeploy() {
     setIsLoading(true)
 
-    const userOp = await mintNFT(passkey, safeAddress!)
+    const userOp = await deploy(passkey)
 
     setIsLoading(false)
     setIsSafeDeployed(true)
     setUserOp(userOp)
   }
 
-  const safeLink = `https://app.safe.global/home?safe=sep:${safeAddress}`
+  const safeLink = `https://app.safe.global/home?safe=sep:${safeAddress}` //* sep for Sepolia, not dynamic
   const jiffscanLink = `https://jiffyscan.xyz/userOpHash/${userOp}?network=${CHAIN_NAME}`
 
   return (
     <Paper sx={{ margin: '32px auto 0', minWidth: '320px' }}>
       <Stack padding={4} alignItems={'center'}>
         <Typography textAlign={'center'} variant='h1' color={'primary'}>
-          Your Safe Account
+          Your Smart Wallet
         </Typography>
 
         {isLoading || !safeAddress ? (
@@ -85,11 +82,6 @@ function SafeAccountDetails({ passkey }: props) {
                     direction={'row'}
                     alignItems={'center'}
                   >
-                    <Image
-                      width={32}
-                      src={SafeLogo}
-                      alt={'safe account logo'}
-                    />
                     <span style={{ margin: '0 8px' }}>
                       {splitAddress(safeAddress)}
                     </span>
@@ -102,12 +94,11 @@ function SafeAccountDetails({ passkey }: props) {
             {!isSafeDeployed && <PendingDeploymentLabel />}
 
             <Button
-              onClick={handleMintNFT}
-              startIcon={<PhotoIcon />}
+              onClick={handleDeploy}
               variant='outlined'
               sx={{ margin: '24px' }}
             >
-              Mint NFT
+              Deploy account
             </Button>
 
             {userOp && (

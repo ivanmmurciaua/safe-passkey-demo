@@ -7,7 +7,7 @@ import { STORAGE_PASSKEY_LIST_KEY } from './constants'
  * @throws {Error} If passkey creation fails.
  */
 export async function createPasskey (): Promise<PasskeyArgType> {
-  const displayName = 'Safe Owner' // This can be customized to match, for example, a user name.
+  const displayName = 'Username' //TODO: Change it in a modal
   // Generate a passkey credential using WebAuthn API
   const passkeyCredential = await navigator.credentials.create({
     publicKey: {
@@ -20,7 +20,7 @@ export async function createPasskey (): Promise<PasskeyArgType> {
       ],
       challenge: crypto.getRandomValues(new Uint8Array(32)),
       rp: {
-        name: 'Safe SmartAccount'
+        name: 'SmartAccount'
       },
       user: {
         displayName,

@@ -16,7 +16,7 @@ function LoginWithPasskey({ handleCreatePasskey, handleSelectPasskey }: props) {
     <Paper sx={{ margin: '32px auto 0' }}>
       <Stack padding={4}>
         <Typography textAlign={'center'} variant='h1' color={'primary'}>
-          Use Safe Account via Passkeys
+          Smart Wallets via Passkeys
         </Typography>
 
         <Typography
@@ -25,7 +25,7 @@ function LoginWithPasskey({ handleCreatePasskey, handleSelectPasskey }: props) {
           marginTop={8}
           variant='h4'
         >
-          Create a new Safe using passkeys
+          Create a new smart wallet using passkeys
         </Typography>
 
         <Button
@@ -49,7 +49,7 @@ function LoginWithPasskey({ handleCreatePasskey, handleSelectPasskey }: props) {
           marginTop={8}
           variant='h4'
         >
-          Connect existing Safe using an existing passkey
+          Connect existing smart wallet using an existing passkey
         </Typography>
 
         <Button
@@ -57,7 +57,6 @@ function LoginWithPasskey({ handleCreatePasskey, handleSelectPasskey }: props) {
           variant='contained'
           onClick={async () => {
             const passkeys = loadPasskeysFromLocalStorage()
-
             setPasskeys(passkeys)
             handleSelectPasskey(passkeys[0])
           }}
